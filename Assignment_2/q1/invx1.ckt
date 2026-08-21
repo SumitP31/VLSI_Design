@@ -1,0 +1,48 @@
+.lib /home/sumit/eda_tools/open_pdks/sky130/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+* Deivce Parameters:
+*--------------
+.subckt INVX1 A VPWR VGND Y
+X0 Y A VPWR VPWR sky130_fd_pr__pfet_01v8 ad=0.405 pd=3.3 as=0.405 ps=3.3 w=1.35 l=0.15
+**devattr s=16200,660 d=16200,660
+X1 Y A VGND VGND sky130_fd_pr__nfet_01v8 ad=0.126 pd=1.44 as=0.126 ps=1.44 w=0.42 l=0.15
+**devattr s=5040,288 d=5040,288
+C0 VPWR Y 0.13766f
+C1 VPWR A 0.10451f
+C2 Y A 0.03664f
+C3 Y VGND 0.40665f
+C4 VPWR VGND 0.82521f
+.ends
+
+* The voltage source:
+*--------------------------------------------------------
+VDD vdd 0 DC 1.8
+
+VIN in 0 PULSE(0 1.8 0 20p 20p 2n 4n)
+
+.tran 1p 6n
+*--------------------------------------------------------
+XINV1 in vdd 0 out INVX1
+XINV2 out vdd 0 load INVX1
+
+*--------------------------------------------------------
+.meas tran tr TRIG V(out) VAL=0.18 RISE=1 TARG V(out) VAL=1.62 RISE=1
+.meas tran tf TRIG V(out) VAL=1.62 FALL=1 TARG V(out) VAL=0.18 FALL=1
+
+
+.meas tran tphl TRIG V(in) VAL=0.9 RISE=1 TARG V(out) VAL=0.9 FALL=1
+.meas tran tplh TRIG V(in) VAL=0.9 FALL=1 TARG V(out) VAL=0.9 RISE=1
+*--------------------------------------------------------
+
+
+.control
+run
+
+plot V(in) V(out)
+plot V(in) V(load)
+meas tran VM find V(out) when V(in)=V(out) cross=-1
+print VM
+
+.endc
+
+.end
