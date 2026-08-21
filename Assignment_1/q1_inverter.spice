@@ -1,0 +1,57 @@
+.lib /home/sumit/eda_tools/open_pdks/sky130/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+
+.param PW= 1.348
+
+*--------------------------------------------------------
+.subckt INV A VDD GND Y
+X0 Y A GND GND sky130_fd_pr__nfet_01v8 ad=0.189 pd=1.74 as=0.189 ps=1.74 w=0.42 l=0.15
+X1 Y A VDD VDD sky130_fd_pr__pfet_01v8 ad=0.6075 pd=3.6 as=0.6075 ps=3.6 w=1.35 l=0.15
+C0 A GND 0.03663f
+C1 VDD GND 0.03283f
+C2 A VDD 0.03795f
+C3 VDD GND 0.00982f
+C4 GND Y 0.04791f
+C5 A VDD 0.05633f
+C6 A Y 0.03034f
+C7 VDD VDD 0.02784f
+C8 VDD Y 0.07174f
+C9 VDD Y 0.01038f
+C10 GND GND 0.27643f
+C11 Y GND 0.10081f
+C12 VDD GND 0.2964f
+C13 A GND 0.28039f
+C14 VDD GND 0.29102f
+.ends
+
+*--------------------------------------------------------
+VDD vdd 0 DC 1.8
+
+VIN in 0 PULSE(0 1.8 0 20p 20p 2n 4n)
+
+.tran 1p 6n
+*--------------------------------------------------------
+XINV1 in vdd 0 out INV
+XINV2 out vdd 0 load INV
+
+*--------------------------------------------------------
+.meas tran tr TRIG V(out) VAL=0.18 RISE=1 TARG V(out) VAL=1.62 RISE=1
+.meas tran tf TRIG V(out) VAL=1.62 FALL=1 TARG V(out) VAL=0.18 FALL=1
+
+
+.meas tran tphl TRIG V(in) VAL=0.9 RISE=1 TARG V(out) VAL=0.9 FALL=1
+.meas tran tplh TRIG V(in) VAL=0.9 FALL=1 TARG V(out) VAL=0.9 RISE=1
+*--------------------------------------------------------
+
+
+.control
+run
+
+plot V(in) V(out)
+plot V(in) V(load)
+meas tran VM find V(out) when V(in)=V(out) cross=-1
+print VM
+
+.endc
+
+.end

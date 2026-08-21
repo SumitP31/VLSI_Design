@@ -1,0 +1,40 @@
+.lib /home/sumit/eda_tools/open_pdks/sky130/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+.param PW= 1.348
+
+.subckt INV in vdd vss out
+
+XM1 out in vdd vdd sky130_fd_pr__pfet_01v8 L=0.15 W={PW} AS={PW*0.3} AD={PW*0.3} PS={2*(PW+0.3)} PD={2*(PW+0.3)}
+
+XM2 out in vss vss sky130_fd_pr__nfet_01v8 L=0.15 W=0.42 AS=0.126 AD=0.126 PS=1.44 PD=1.44
+
+c3 a vss 0.385f
+c2 z vss 0.576f
+.ends INV
+
+VDD vdd 0 DC 1.8
+
+VIN in 0 PULSE(0 1.8 0 20p 20p 2n 4n)
+
+XINV1 in vdd 0 out INV
+XINV2 in vdd 0 out INV
+
+XINV3 out vdd 0 load INV
+
+
+
+.tran 1p 6n
+
+.control
+run
+
+meas tran tr TRIG V(out) VAL=0.18 RISE=1 TARG V(out) VAL=1.62 RISE=1
+meas tran tf TRIG V(out) VAL=1.62 FALL=1 TARG V(out) VAL=0.18 FALL=1
+
+meas tran tphl TRIG V(in) VAL=0.9 RISE=1 TARG V(out) VAL=0.9 FALL=1
+meas tran tplh TRIG V(in) VAL=0.9 FALL=1 TARG V(out) VAL=0.9 RISE=1
+
+plot V(in) V(out)
+
+.endc
+.end

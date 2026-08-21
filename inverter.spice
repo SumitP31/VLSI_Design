@@ -1,0 +1,29 @@
+.lib /home/sumit/eda_tools/open_pdks/sky130/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+.subckt not1 a vdd vss z
+xm01 z a vdd vdd sky130_fd_pr__pfet_01v8 l=0.15 w=0.99 as=0.26235 ad=0.26235 ps=2.51 pd=2.51
+xm02 z a vss vss sky130_fd_pr__nfet_01v8 l=0.15 w=0.495 as=0.1311175 ad=0.131175 ps=1.52 pd=1.52
+c3 a vss 0.385f
+c2 z vss 0f
+.ends
+
+* The voltage source:
+VDD vdd 0 DC 1.8
+VIN in 0 PULSE(0 2.5 0 20p 20p 2n 4n)
+
+* The voltage source:
+*Vdd vdd gnd DC 1.8
+
+Xnot1 in vdd gnd out not1
+
+* dc analysis
+*V1 in 0 DC 0
+*.dc V1 0 1.8 0.01
+
+.tran 1p 6n
+.control
+run
+plot V(in) V(out)
+
+.endc
+.end
