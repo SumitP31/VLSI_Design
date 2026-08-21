@@ -9,26 +9,6 @@
 *c2 z vss 0.576f
 *.ends
 
-
-.subckt not1 A VDD GND Y
-X0 Y A GND GND sky130_fd_pr__nfet_01v8 ad=0.189 pd=1.74 as=0.189 ps=1.74 w=0.42 l=0.15
-X1 Y A VDD VDD sky130_fd_pr__pfet_01v8 ad=0.6075 pd=3.6 as=0.6075 ps=3.6 w=1.35 l=0.15
-C0 A GND 0.03663f
-C1 VDD GND 0.03283f
-C2 A VDD 0.03795f
-C3 VDD GND 0.00982f
-C4 GND Y 0.04791f
-C5 A VDD 0.05633f
-C6 A Y 0.03034f
-C7 VDD VDD 0.02784f
-C8 VDD Y 0.07174f
-C9 VDD Y 0.01038f
-C10 GND GND 0.27643f
-C11 Y GND 0.10081f
-C12 VDD GND 0.2964f
-C13 A GND 0.28039f
-C14 VDD GND 0.29102f
-.ends
 * The voltage source:
 *---------------------
 Vdd vdd gnd DC 1.8
