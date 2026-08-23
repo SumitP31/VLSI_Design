@@ -16,7 +16,7 @@ VLSI_Design assignments
    ```
    > Compare with Assignment_1 netlist
    ``` cli
-   netgen -batch lvs "invx1_layout.spice INVX1" "invx1.ckt INVX1" /foss/pdks/sky130A/libs.tech/netgen/*.tcl
+   netgen -batch lvs "invx1_layout.spice INVX1" "invx1.ckt INVX1" /foss/pdks/sky130A/libs.tech/netgen/sky130A_steup.tcl
    ```
    > Export Parasitics
    ``` cli
@@ -36,7 +36,7 @@ VLSI_Design assignments
    ```
    > Compare with Assignment_1 netlist
    ``` cli
-   netgen -batch lvs "invx2_layout.spice INVX2" "invx2.ckt INVX2" /foss/pdks/sky130A/libs.tech/netgen/*.tcl
+   netgen -batch lvs "invx2_layout.spice INVX2" "invx2.ckt INVX2" /foss/pdks/sky130A/libs.tech/netgen/sky130A_steup.tcl
    ```
    > Export Parasitics
    ``` cli
