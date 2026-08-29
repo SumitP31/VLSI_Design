@@ -1,34 +1,43 @@
 * NGSPICE file created from AND2.ext - technology: sky130A
 
 .subckt AND2 A B VPWR VGND Y
-X0 Y x2 x1 VPWR sky130_fd_pr__pfet_01v8 ad=2.835 pd=19.5 as=2.835 ps=19.5 w=9.45 l=0.15
-**devattr s=113400,3900 d=113400,3900
-X1 Y A VGND VGND sky130_fd_pr__nfet_01v8 ad=0.126 pd=1.44 as=0.126 ps=1.44 w=0.42 l=0.15
-**devattr s=5040,288 d=5040,288
-X2 VPWR B x2 VPWR sky130_fd_pr__pfet_01v8 ad=0.405 pd=2.85 as=0.405 ps=3.3 w=1.35 l=0.15
+X0 VPWR B x1 VPWR sky130_fd_pr__pfet_01v8 ad=0.405 pd=3.59503 as=0.405 ps=3.3 w=1.35 l=0.15
 **devattr s=16200,660 d=16200,660
-X3 Y x2 VGND VGND sky130_fd_pr__nfet_01v8 ad=0.126 pd=1.44 as=0.126 ps=1.44 w=0.42 l=0.15
+X1 x2 x1 x3 VGND sky130_fd_pr__nfet_01v8 ad=0.126 pd=1.44 as=0.126 ps=1.44 w=0.42 l=0.15
 **devattr s=5040,288 d=5040,288
-X4 VGND B x2 VGND sky130_fd_pr__nfet_01v8 ad=0.126 pd=1.44 as=0.126 ps=1.44 w=0.42 l=0.15
+X2 VPWR x1 x2 VPWR sky130_fd_pr__pfet_01v8 ad=0.138 pd=1.22497 as=0.138 ps=1.52 w=0.46 l=0.15
+**devattr s=5520,304 d=5520,304
+X3 x2 A VPWR VPWR sky130_fd_pr__pfet_01v8 ad=0.138 pd=1.52 as=0.138 ps=1.22497 w=0.46 l=0.15
+**devattr s=5520,304 d=5520,304
+X4 x3 A VGND VGND sky130_fd_pr__nfet_01v8 ad=0.126 pd=1.44 as=0.126 ps=1.44 w=0.42 l=0.15
 **devattr s=5040,288 d=5040,288
-X5 x1 A VPWR VPWR sky130_fd_pr__pfet_01v8 ad=2.835 pd=19.5 as=2.835 ps=19.95 w=9.45 l=0.15
-**devattr s=113400,3900 d=113400,3900
-C0 x2 B 0.04077f
-C1 Y B 0
-C2 x2 A 0.00564f
-C3 Y A 0.01917f
-C4 B x1 0
-C5 B VPWR 0.0984f
-C6 x1 A 0.08424f
-C7 VPWR A 0.19645f
-C8 x2 Y 0.15157f
-C9 x2 x1 0.08424f
-C10 Y x1 0.41933f
-C11 x2 VPWR 0.22574f
-C12 Y VPWR 0.47388f
-C13 x1 VPWR 0.85838f
-C14 Y VGND 0.57099f
-C15 VPWR VGND 5.96369f
-C16 x1 VGND 0.20201f
+X5 VGND x2 Y VGND sky130_fd_pr__nfet_01v8 ad=0.126 pd=1.44 as=0.126 ps=1.44 w=0.42 l=0.15
+**devattr s=5040,288 d=5040,288
+X6 VGND B x1 VGND sky130_fd_pr__nfet_01v8 ad=0.126 pd=1.44 as=0.126 ps=1.44 w=0.42 l=0.15
+**devattr s=5040,288 d=5040,288
+X7 VPWR x2 Y VPWR sky130_fd_pr__pfet_01v8 ad=0.405 pd=3.59503 as=0.405 ps=3.3 w=1.35 l=0.15
+**devattr s=16200,660 d=16200,660
+C0 x2 VPWR 0.31075f
+C1 B x2 0
+C2 x1 x2 0.08321f
+C3 Y x3 0
+C4 A x3 0.00303f
+C5 A Y 0.00249f
+C6 x3 VPWR 0.00132f
+C7 x1 x3 0.003f
+C8 Y VPWR 0.10413f
+C9 x1 Y 0
+C10 A VPWR 0.20418f
+C11 A B 0
+C12 A x1 0.01541f
+C13 x2 x3 0.03943f
+C14 Y x2 0.03937f
+C15 B VPWR 0.11272f
+C16 x1 VPWR 0.32475f
+C17 x1 B 0.03641f
+C18 A x2 0.06112f
+C19 Y VGND 0.53531f
+C20 VPWR VGND 2.082f
+C21 x3 VGND 0.27306f
 .ends
 

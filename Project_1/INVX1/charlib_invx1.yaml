@@ -1,0 +1,48 @@
+# CharLib configuration for the SKY130A, TT, 1.8 V, 25 C INVX1 cell.
+# Run from this directory with:
+#   /home/sumit/VLSI_Design/Project_1/.venv/bin/charlib run charlib_invx1.yaml -o results/invx1_tt_1v80.lib
+
+settings:
+  lib_name: invx1_tt_1v80
+  simulation:
+    # ngspice-subprocess avoids requiring the optional ngspice shared library.
+    backend: ngspice-subprocess
+  units:
+    time: ns
+    voltage: V
+    current: uA
+    capacitive_load: pF
+    pulling_resistance: Ohm
+    leakage_power: nW
+    # fJ triggers a unit-parser warning in the /foss Charlib build; pJ is supported.
+    energy: pJ
+  named_nodes:
+    primary_power:
+      name: VPWR
+      voltage: 1.8
+    primary_ground:
+      name: VGND
+      voltage: 0.0
+  logic_thresholds:
+    low: 20.0
+    high: 80.0
+    rising: 50.0
+    falling: 50.0
+  temperature: 25
+  multithreaded: false
+  results_dir: results
+  debug: false
+
+cells:
+  INVX1:
+    netlist: INVX1.spice
+    # The trailing process corner makes CharLib emit: .lib <path> tt
+    models:
+      - /home/sumit/eda_tools/open_pdks/sky130/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+    inputs: [A]
+    outputs: [Y]
+    functions: ["Y = !A"]
+    # Units: ns and pF, as set above.
+    data_slews: [0.02, 0.05, 0.10, 0.20]
+    loads: [0.001, 0.005, 0.010, 0.050]
+    plots: none
