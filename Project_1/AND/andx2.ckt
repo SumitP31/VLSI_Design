@@ -24,15 +24,15 @@ C4 VPWR VGND 0.82521f
 
 *-----------AND with one inverted input----------
 .subckt AND2 A B VPWR VGND Y
-X2 B2 B VPWR VPWR sky130_fd_pr__pfet_01v8 ad=0.405 pd=3.3 as=0.405 ps=3.3 w=1.35 l=0.15
+X2 VPWR B B2 VPWR sky130_fd_pr__pfet_01v8 ad=0.405 pd=3.3 as=0.405 ps=3.3 w=1.35 l=0.15
 X6 B2 B VGND VGND sky130_fd_pr__nfet_01v8 ad=0.126 pd=1.44 as=0.126 ps=1.44 w=0.42 l=0.15
 
 X0 B1 A VPWR VPWR sky130_fd_pr__pfet_01v8 L=0.15 w={PW} as={AS} ad={AD} ps={PS} pd={PD}
 X1 B1 B2 VPWR VPWR sky130_fd_pr__pfet_01v8 L=0.15 w={PW} as={AS} ad={AD} ps={PS} pd={PD}
 *X1 Y V3 V1 VPWR sky130_fd_pr__pfet_01v8 L=0.15 w={PW} as={AS} ad={AD} ps={PS} pd={PD}
 *X2 V3 B VPWR VPWR sky130_fd_pr__pfet_01v8 L=0.15 w={PW} as={AS} ad={AD} ps={PS} pd={PD}
-X4 B1 A V1 VGND sky130_fd_pr__nfet_01v8 ad=0.126 pd=1.44 as=0.126 ps=1.44 w=0.42 l=0.15
-X5 V1 b2 VGND VGND sky130_fd_pr__nfet_01v8 ad=0.126 pd=1.44 as=0.126 ps=1.44 w=0.42 l=0.15
+X4 B1 B2 V1 VGND sky130_fd_pr__nfet_01v8 ad=0.126 pd=1.44 as=0.126 ps=1.44 w=0.42 l=0.15
+X5 V1 A VGND VGND sky130_fd_pr__nfet_01v8 ad=0.126 pd=1.44 as=0.126 ps=1.44 w=0.42 l=0.15
 
 X3 Y B1 VPWR VPWR sky130_fd_pr__pfet_01v8 ad=0.405 pd=3.3 as=0.405 ps=3.3 w=1.35 l=0.15
 X7 Y B1 VGND VGND sky130_fd_pr__nfet_01v8 ad=0.126 pd=1.44 as=0.126 ps=1.44 w=0.42 l=0.15
