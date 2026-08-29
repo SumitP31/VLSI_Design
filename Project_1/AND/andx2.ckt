@@ -24,13 +24,19 @@ C4 VPWR VGND 0.82521f
 
 *-----------AND with one inverted input----------
 .subckt AND2 A B VPWR VGND Y
-X0 Y A VPWR VPWR sky130_fd_pr__pfet_01v8 L=0.15 w={PW} as={AS} ad={AD} ps={PS} pd={PD}
-X1 Y B VPWR VPWR sky130_fd_pr__pfet_01v8 L=0.15 w={PW} as={AS} ad={AD} ps={PS} pd={PD}
+X2 B2 B VPWR VPWR sky130_fd_pr__pfet_01v8 ad=0.405 pd=3.3 as=0.405 ps=3.3 w=1.35 l=0.15
+X6 B2 B VGND VGND sky130_fd_pr__nfet_01v8 ad=0.126 pd=1.44 as=0.126 ps=1.44 w=0.42 l=0.15
+
+X0 B1 A VPWR VPWR sky130_fd_pr__pfet_01v8 L=0.15 w={PW} as={AS} ad={AD} ps={PS} pd={PD}
+X1 B1 B2 VPWR VPWR sky130_fd_pr__pfet_01v8 L=0.15 w={PW} as={AS} ad={AD} ps={PS} pd={PD}
 *X1 Y V3 V1 VPWR sky130_fd_pr__pfet_01v8 L=0.15 w={PW} as={AS} ad={AD} ps={PS} pd={PD}
 *X2 V3 B VPWR VPWR sky130_fd_pr__pfet_01v8 L=0.15 w={PW} as={AS} ad={AD} ps={PS} pd={PD}
+X4 B1 A V1 VGND sky130_fd_pr__nfet_01v8 ad=0.126 pd=1.44 as=0.126 ps=1.44 w=0.42 l=0.15
+X5 V1 b2 VGND VGND sky130_fd_pr__nfet_01v8 ad=0.126 pd=1.44 as=0.126 ps=1.44 w=0.42 l=0.15
 
-X4 Y A V1 VGND sky130_fd_pr__nfet_01v8 ad=0.126 pd=1.44 as=0.126 ps=1.44 w=0.42 l=0.15
-X5 V1 B VGND VGND sky130_fd_pr__nfet_01v8 ad=0.126 pd=1.44 as=0.126 ps=1.44 w=0.42 l=0.15
+X3 Y B1 VPWR VPWR sky130_fd_pr__pfet_01v8 ad=0.405 pd=3.3 as=0.405 ps=3.3 w=1.35 l=0.15
+X7 Y B1 VGND VGND sky130_fd_pr__nfet_01v8 ad=0.126 pd=1.44 as=0.126 ps=1.44 w=0.42 l=0.15
+
 *X5 Y V3 VGND VGND sky130_fd_pr__nfet_01v8 ad=0.126 pd=1.44 as=0.126 ps=1.44 w=0.42 l=0.15
 *X6 V3 B VGND VGND sky130_fd_pr__nfet_01v8 ad=0.126 pd=1.44 as=0.126 ps=1.44 w=0.42 l=0.15
 .ends
@@ -42,13 +48,13 @@ VDD vdd 0 DC 1.8
 VIN1 in1 0 PULSE(1.8 0 0 20p 20p 2n 4n)
 VIN2 in2 0 PULSE(0 1.8 0 20p 20p 2n 4n)
 
-.tran 1p 4n
+.tran 1p 8n
 *--------------------------------------------------------
-XINV1 in2 vdd 0 out1 INVX1
-XAND1 in1 out1 vdd 0 out2 AND2
-XINV3 out2 vdd 0 out INVX1
-*XINV2 out vdd 0 load INVX1
-Cload out 0 0.5f
+*XINV1 in2 vdd 0 out1 INVX1
+XAND1 in1 in2 vdd 0 out AND2
+*XINV3 out2 vdd 0 out INVX1
+XINV2 out vdd 0 load INVX1
+*Cload out 0 0.5f
 
 *--------------------------------------------------------
 .meas tran tr TRIG V(out) VAL=0.36 RISE=1 TARG V(out) VAL=1.44 RISE=1
