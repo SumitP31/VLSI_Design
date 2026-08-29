@@ -7,14 +7,27 @@ X0 Y A VPWR VPWR sky130_fd_pr__pfet_01v8 ad=0.405 pd=3.3 as=0.405 ps=3.3 w=1.35 
 X1 Y A VGND VGND sky130_fd_pr__nfet_01v8 ad=0.126 pd=1.44 as=0.126 ps=1.44 w=0.42 l=0.15
 X2 VPWR A Y VPWR sky130_fd_pr__pfet_01v8 ad=0.405 pd=3.3 as=0.405 ps=3.3 w=1.35 l=0.15
 X3 VGND A Y VGND sky130_fd_pr__nfet_01v8 ad=0.126 pd=1.44 as=0.126 ps=1.44 w=0.42 l=0.15
+
 C0 A Y 0.15021f
 C1 VPWR Y 0.34447f
 C2 A VPWR 0.16516f
 C3 Y VGND 0.34994f
 C4 A VGND 0.51422f
 C5 VPWR VGND 1.32491f
-
 .ends
+
+.subckt INVX1 A VPWR VGND Y
+X0 Y A VPWR VPWR sky130_fd_pr__pfet_01v8 ad=0.405 pd=3.3 as=0.405 ps=3.3 w=1.35 l=0.15
+**devattr s=16200,660 d=16200,660
+X1 Y A VGND VGND sky130_fd_pr__nfet_01v8 ad=0.126 pd=1.44 as=0.126 ps=1.44 w=0.42 l=0.15
+**devattr s=5040,288 d=5040,288
+C0 VPWR Y 0.13766f
+C1 VPWR A 0.10451f
+C2 Y A 0.03664f
+C3 Y VGND 0.40665f
+C4 VPWR VGND 0.82521f
+.ends
+
 
 * The voltage source:
 *--------------------------------------------------------
@@ -25,7 +38,7 @@ VIN in 0 PULSE(0 1.8 0 20p 20p 2n 4n)
 .tran 1p 6n
 *--------------------------------------------------------
 XINV1 in vdd 0 out INVX2
-XINV2 out vdd 0 load INVX2
+XINV2 out vdd 0 load INVX1
 
 *--------------------------------------------------------
 .meas tran tr TRIG V(out) VAL=0.18 RISE=1 TARG V(out) VAL=1.62 RISE=1
