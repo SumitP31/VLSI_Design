@@ -14,7 +14,8 @@ settings:
     capacitive_load: pF
     pulling_resistance: Ohm
     leakage_power: nW
-    energy: fJ
+    # fJ triggers a unit-parser warning in the /foss Charlib build; pJ is supported.
+    energy: pJ
   named_nodes:
     primary_power:
       name: VPWR
