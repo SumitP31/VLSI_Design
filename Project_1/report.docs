@@ -1,0 +1,80 @@
+For Sequential cells, the following characterizations have to be performed and filled. 
+
+a)	Input pin capacitances:
+Input Pins	Rise Cap (pF)	Fall Cap (pF)	Average Cap (pF)
+D			
+CLK			
+b)	Set-up Time Table:
+(i) Rise Constraint (in ns) [Input slew vs CLK slew].
+	10 ps	1000 ps
+10 ps		
+1000 ps		
+
+(ii) Fall Constraint (in ns) [Input slew vs CLK slew].
+	10 ps	1000 ps
+10 ps		
+1000 ps		
+c)	Hold Time Table:
+(i) Rise Constraint (in ns) [Input slew vs CLK slew].
+	10 ps	1000 ps
+10 ps		
+1000 ps		
+
+(ii) Fall Constraint (in ns) [Input slew vs CLK slew].
+	10 ps	1000 ps
+10 ps		
+1000 ps		
+
+d)	Transition Time Table (for Q output, CLK will have minimum slew of 10 ps): (please strictly consider 20% and 80% of VDD for transition time) 
+(i) Output Rise Transitions (in ns) [Input slew vs output capacitance].
+Related pin D: (i.e., other input pins are held constant)
+	10 ps	100 ps	1000 ps
+0.5 fF			
+10 fF			
+100 fF			
+(ii) Output Fall Transitions (in ns) [Input slew vs output capacitance].
+Related pin D: (i.e., other input pins are held constant)
+	10 ps	100 ps	1000 ps
+0.5 fF			
+10 fF			
+100 fF			
+
+
+
+e)	CLK-to-Q Delay Time Table: (delay between clock transition and data transition. Use 50% of CLK to 50% of output to simulate propagation delay).
+   (i) Cell Rise Delay (in ns) [Input slew vs output capacitance].
+Related pin D: (i.e., other input pins are held constant)
+	10 ps	100 ps	1000 ps
+0.5 fF			
+10 fF			
+100 fF			
+(ii) Cell Fall Delay (in ns) [Input slew vs output capacitance].
+Related pin D: (i.e., other input pins are held constant)
+	10 ps	100 ps	1000 ps
+0.5 fF			
+10 fF			
+100 fF			
+
+f)	Static Power (all possible input combinations of CLK and D).
+Condition (CLK, D)	Power (nW)
+00	
+01	
+10	
+11	
+
+g)	Dynamic Power Table: (CLK will have minimum slew of 10 ps)
+(i) Rise Power (in nW) [Input slew vs output capacitance].
+Related pin D: (i.e., other input pins are held constant)
+	10 ps	100 ps	1000 ps
+0.5 fF			
+10 fF			
+100 fF			
+(ii) Fall Power (in nW) [Input slew vs output capacitance].
+Related pin D: (i.e., other input pins are held constant)
+	10 ps	100 ps	1000 ps
+0.5 fF			
+10 fF			
+100 fF			
+
+
+
