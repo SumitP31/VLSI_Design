@@ -20,7 +20,7 @@ VIN2 in2 0 DC 0
 * One rising and one falling edge per independent cell instance.
 XAND1 in1 in2 vdd 0 out AND2
 XINV1 out 0 VDD 0 INVX1
-Cload out 0 {Cl}
+*Cload out 0 {Cl}
 
 .tran 1p 8n
 

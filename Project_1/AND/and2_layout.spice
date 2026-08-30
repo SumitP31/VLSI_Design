@@ -1,21 +1,21 @@
 * NGSPICE file created from AND2.ext - technology: sky130A
 
 .subckt AND2 A B VPWR VGND Y
-X0 VPWR B x1 VPWR sky130_fd_pr__pfet_01v8 ad=0.405 pd=3.59503 as=0.405 ps=3.3 w=1.35 l=0.15
+X0 VGND x2 Y VGND sky130_fd_pr__nfet_01v8 ad=0.126 pd=1.44 as=0.126 ps=1.44 w=0.42 l=0.15
+**devattr s=5040,288 d=5040,288
+X1 x3 A VGND VGND sky130_fd_pr__nfet_01v8 ad=0.126 pd=1.44 as=0.126 ps=1.44 w=0.42 l=0.15
+**devattr s=5040,288 d=5040,288
+X2 x2 x1 x3 VGND sky130_fd_pr__nfet_01v8 ad=0.126 pd=1.44 as=0.126 ps=1.44 w=0.42 l=0.15
+**devattr s=5040,288 d=5040,288
+X3 VGND B x1 VGND sky130_fd_pr__nfet_01v8 ad=0.126 pd=1.44 as=0.126 ps=1.44 w=0.42 l=0.15
+**devattr s=5040,288 d=5040,288
+X4 VPWR x1 x2 VPWR sky130_fd_pr__pfet_01v8 ad=0.138 pd=1.22497 as=0.138 ps=1.52 w=0.46 l=0.15
+**devattr s=5520,304 d=5520,304
+X5 x2 A VPWR VPWR sky130_fd_pr__pfet_01v8 ad=0.138 pd=1.52 as=0.138 ps=1.22497 w=0.46 l=0.15
+**devattr s=5520,304 d=5520,304
+X6 VPWR x2 Y VPWR sky130_fd_pr__pfet_01v8 ad=0.405 pd=3.59503 as=0.405 ps=3.3 w=1.35 l=0.15
 **devattr s=16200,660 d=16200,660
-X1 x2 x1 x3 VGND sky130_fd_pr__nfet_01v8 ad=0.126 pd=1.44 as=0.126 ps=1.44 w=0.42 l=0.15
-**devattr s=5040,288 d=5040,288
-X2 VPWR x1 x2 VPWR sky130_fd_pr__pfet_01v8 ad=0.138 pd=1.22497 as=0.138 ps=1.52 w=0.46 l=0.15
-**devattr s=5520,304 d=5520,304
-X3 x2 A VPWR VPWR sky130_fd_pr__pfet_01v8 ad=0.138 pd=1.52 as=0.138 ps=1.22497 w=0.46 l=0.15
-**devattr s=5520,304 d=5520,304
-X4 x3 A VGND VGND sky130_fd_pr__nfet_01v8 ad=0.126 pd=1.44 as=0.126 ps=1.44 w=0.42 l=0.15
-**devattr s=5040,288 d=5040,288
-X5 VGND x2 Y VGND sky130_fd_pr__nfet_01v8 ad=0.126 pd=1.44 as=0.126 ps=1.44 w=0.42 l=0.15
-**devattr s=5040,288 d=5040,288
-X6 VGND B x1 VGND sky130_fd_pr__nfet_01v8 ad=0.126 pd=1.44 as=0.126 ps=1.44 w=0.42 l=0.15
-**devattr s=5040,288 d=5040,288
-X7 VPWR x2 Y VPWR sky130_fd_pr__pfet_01v8 ad=0.405 pd=3.59503 as=0.405 ps=3.3 w=1.35 l=0.15
+X7 VPWR B x1 VPWR sky130_fd_pr__pfet_01v8 ad=0.405 pd=3.59503 as=0.405 ps=3.3 w=1.35 l=0.15
 **devattr s=16200,660 d=16200,660
 .ends
 
