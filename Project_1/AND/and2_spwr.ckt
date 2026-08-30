@@ -1,0 +1,42 @@
+AND2 static-power analysis: all DC input states
+.lib /home/sumit/eda_tools/open_pdks/sky130/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.include and2_pex.spice
+.include invx1_pex.spice
+
+.param Cl = 0.5e-15
+.param SR = 10e-12
+
+
+VDD11 vdd11 0 1.8
+VA11 a11 0 1.8
+VB11 b11 0 1.8
+
+X11 a11 b11 vdd11 0 y11 AND2
+
+
+* Input states 00, 01, 10. The original circuit below is state 11.
+VDD00 vdd00 0 1.8
+VA00  a00   0 0
+VB00  b00   0 0
+X00   a00 b00 vdd00 0 y00 AND2
+
+VDD01 vdd01 0 1.8
+VA01  a01   0 0
+VB01  b01   0 1.8
+X01   a01 b01 vdd01 0 y01 AND2
+
+VDD10 vdd10 0 1.8
+VA10  a10   0 1.8
+VB10  b10   0 0
+X10   a10 b10 vdd10 0 y10 AND2
+
+.op
+.control
+op
+let p_static_00 = -v(vdd00) * i(VDD00)
+let p_static_01 = -v(vdd01) * i(VDD01)
+let p_static_10 = -v(vdd10) * i(VDD10)
+let p_static_11 = -v(vdd11) * i(VDD11)
+print p_static_00 p_static_01 p_static_10 p_static_11
+.endc
+.end

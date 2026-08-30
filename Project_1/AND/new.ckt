@@ -1,0 +1,50 @@
+AND2 PEX input-capacitance characterization
+* Capacitance = charge delivered/absorbed by an input source divided by VDD.
+* Each input is toggled with the other input held at its sensitizing value:
+* B=0 for A, and A=1.8 V for B.  Outputs are unloaded except for PEX parasitics.
+
+.lib /home/sumit/eda_tools/open_pdks/sky130/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.include and2_pex.spice
+.include invx1_pex.spice
+
+.param SR = 10e-12
+.param Cl = 0.5e-15
+
+.param TR = 2e-9 - SR
+
+VDD vdd 0 1.8
+
+VIN1 in1 0 PULSE(1.8 0 0 {SR} {SR} {TR} 4n)
+VIN2 in2 0 1.8
+
+XAND1 in2 in1 vdd 0 out AND2
+*XINV1 out 0 VDD 0 INVX1
+Cload out 0 {Cl}
+
+.tran 1p 8n
+    .meas tran tr TRIG V(out) VAL=0.36 RISE=1 TARG V(out) VAL=1.44 RISE=1
+    .meas tran tf TRIG V(out) VAL=1.44 FALL=1 TARG V(out) VAL=0.36 FALL=1
+
+    .meas tran tphl TRIG V(in1) VAL=0.9 RISE=1 TARG V(out) VAL=0.9 RISE=1
+    .meas tran tplh TRIG V(in1) VAL=0.9 FALL=1 TARG V(out) VAL=0.9 FALL=1
+
+    .meas tran q_a_rise INTEG par('-i(VIN1)') FROM=2n TO= '2n+SR'
+    .meas tran q_a_fall INTEG par('i(VIN1)')  FROM=4n TO= '4n+SR'
+
+    .meas tran a_rise_cap PARAM='q_a_rise/1.8'
+    .meas tran a_fall_cap PARAM='q_a_fall/1.8'
+    .meas tran a_average_cap PARAM='(a_rise_cap+a_fall_cap)/2'
+.control
+run
+
+
+    *plot V(in1) V(in2) 
+    *plot  V(in1) V(out) 
+    *plot I(vdd)
+    print tr tf tphl tplh
+    *print q_b_rise q_b_fall 
+    print a_rise_cap a_fall_cap a_average_cap
+
+.endc
+
+.end

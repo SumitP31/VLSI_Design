@@ -7,47 +7,88 @@ AND2 PEX input-capacitance characterization
 .include and2_pex.spice
 .include invx1_pex.spice
 
-.param Cl = 10e-15
-.param SR = 200e-12
+.param SR = 1000e-12
+.param Cl = 100e-15
 
-
+.param TR = 2e-9 - SR
 
 VDD vdd 0 1.8
 
-VIN1 in1 0 PULSE(1.8 0 0 {SR} {SR} 1.8n 4n)
-VIN2 in2 0 DC 0
+VIN1 in1 0 PULSE(1.8 0 0 {SR} {SR} {TR} 4n)
+VIN2 in2 0 1.8
 
-* One rising and one falling edge per independent cell instance.
-XAND1 in1 in2 vdd 0 out AND2
-XINV1 out 0 VDD 0 INVX1
-*Cload out 0 {Cl}
+XAND1 in2 in1 vdd 0 out AND2
+*XINV1 out 0 VDD 0 INVX1
+Cload out 0 {Cl}
 
 .tran 1p 8n
 
-*.meas tran pavg AVG par('-v(vdd)*i(VDD)') FROM=4n TO=8n
-*.meas tran energy_per_cycle INTEG par('-v(vdd)*i(VDD)') FROM=4n TO=8n
-
-
-* Rising sources deliver negative SPICE branch current; falling sources absorb
-* positive current.  The 200 ps windows include the complete input/output response.
-.meas tran q_a_rise INTEG par('-i(VIN1)') FROM=2n TO= '2n+SR'
-.meas tran q_a_fall INTEG par('i(VIN1)')  FROM=4n TO= '4n+SR'
-*.meas tran q_b_rise INTEG par('-i(VIN1)') FROM=5n TO=5.2n
-*.meas tran q_b_fall INTEG par('i(VIN1)')  FROM=7n TO=7.2n
-
-.meas tran a_rise_cap PARAM='q_a_rise/1.8'
-.meas tran a_fall_cap PARAM='q_a_fall/1.8'
-.meas tran a_average_cap PARAM='(a_rise_cap+a_fall_cap)/2'
-*.meas tran b_rise_cap PARAM='q_b_rise/1.8'
-*.meas tran b_fall_cap PARAM='q_b_fall/1.8'
-*.meas tran b_average_cap PARAM='(b_rise_cap+b_fall_cap)/2'
-
 .control
 run
-plot V(in1) V(in2) 
-plot  V(in1) V(out)
-print q_a_rise q_a_fall a_rise_cap a_fall_cap a_average_cap
-*print q_b_rise q_b_fall b_rise_cap b_fall_cap b_average_cap
+    meas tran tr TRIG V(out) VAL=0.36 RISE=1 TARG V(out) VAL=1.44 RISE=1
+    meas tran tf TRIG V(out) VAL=1.44 FALL=1 TARG V(out) VAL=0.36 FALL=1
+
+    let tf = tf
+    let tr = tr
+
+    meas tran tphl TRIG V(in1) VAL=0.9 RISE=1 TARG V(out) VAL=0.9 RISE=1
+    meas tran tplh TRIG V(in1) VAL=0.9 FALL=1 TARG V(out) VAL=0.9 FALL=1
+
+    meas tran q_a_rise INTEG par('-i(VIN1)') FROM=2n TO= '2n+SR'
+    meas tran q_a_fall INTEG par('i(VIN1)')  FROM=4n TO= '4n+SR'
+
+
+    meas tran a_rise_cap PARAM='q_a_rise/1.8'
+    meas tran a_fall_cap PARAM='q_a_fall/1.8'
+    meas tran a_average_cap PARAM='(a_rise_cap+a_fall_cap)/2'
+
+    *plot V(in1) V(in2) 
+    *plot  V(in1) V(out) 
+    *plot I(vdd)
+    print tr tf tphl tplh
+    *print q_b_rise q_b_fall 
+    print a_rise_cap a_fall_cap a_average_cap
+
+    *---------------------------DYNAMIC POWER------------------------------
+    let p_inst = -v(vdd) * i(VDD)
+
+    meas tran tr_start WHEN v(in1)=1.62 FALL=1
+    meas tran tr_end   WHEN v(out)=1.62 RISE=1
+
+    meas tran rise_energy INTEG p_inst FROM=tr_start TO=tr_end
+    let delta_tr = tr_end - tr_start
+    let p_dynamic_rise = rise_energy / delta_tr
+
+    print tr_start tr_end
+    print rise_energy
+    print p_dynamic_rise
+    print '------------------------------------------------------------------'
+
+    meas tran tf_start WHEN v(in1)=0.18 RISE=1
+    meas tran tf_end   WHEN v(out)=0.18 FALL=1
+
+    meas tran fall_energy INTEG p_inst FROM=tf_start TO=tf_end
+    let delta_tf = tf_end - tf_start
+    let p_dynamic_fall = fall_energy / delta_tf
+
+    print tf_start tf_end
+    print fall_energy
+    print p_dynamic_fall
+
+    echo "========================================" >> simulation_results.txt
+    echo "Parameters_Slew = 1000" >> simulation_results.txt
+    echo "Parameters_Cap = 100" >> simulation_results.txt
+
+    echo "Rise_time = $&tr" >> simulation_results.txt
+    echo "Fall_time = $&tf" >> simulation_results.txt
+    
+    echo "PHL_time = $&tphl" >> simulation_results.txt
+    echo "PLH_time = $&tplh" >> simulation_results.txt
+
+    echo "p_dynamic_rise = $&p_dynamic_rise" >> simulation_results.txt
+    echo "p_dynamic_fall = $&p_dynamic_fall" >> simulation_results.txt
+    echo "========================================" >> simulation_results.txt
+
 .endc
 
 .end

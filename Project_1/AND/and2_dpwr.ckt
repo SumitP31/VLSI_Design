@@ -1,0 +1,53 @@
+.lib /home/sumit/eda_tools/open_pdks/sky130/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.include and2_pex.spice
+.include invx1_pex.spice
+
+.param Cl = 0.5e-15
+.param SR = 10e-12
+
+VDD vdd 0 1.8
+
+VIN1 in1 0 PULSE(1.8 0 0 {SR} {SR} 2n 4n)
+VIN2 in2 0 DC 1.8
+
+XAND1 in2 in1 vdd 0 out AND2
+*XINV1 out 0 VDD 0 INVX1
+Cload out 0 {Cl}
+
+.tran 1ps 10ns
+
+.control
+  run
+
+  let p_inst = -v(vdd) * i(VDD)
+
+  meas tran tr_start WHEN v(in1)=1.62 FALL=1
+  meas tran tr_end   WHEN v(out)=1.62 RISE=1
+
+ 
+
+  meas tran rise_energy INTEG p_inst FROM=tr_start TO=tr_end
+  let delta_tr = tr_end - tr_start
+  let p_dynamic_rise = rise_energy / delta_tr
+
+  *print tr_start tr_end
+  *print rise_energy
+  print p_dynamic_rise
+------------------------------------------------------------------
+
+  meas tran tf_start WHEN v(in1)=0.18 RISE=1
+  meas tran tf_end   WHEN v(out)=1.62 FALL=1
+
+  meas tran fall_energy INTEG p_inst FROM=tf_start TO=tf_end
+  let delta_tf = tf_end - tf_start
+  let p_dynamic_fall = fall_energy / delta_tf
+
+  *print tf_start tf_end
+  *print fall_energy
+  print p_dynamic_fall
+
+  plot v(in1) v(out)
+  plot i(VDD)
+.endc
+
+.end
