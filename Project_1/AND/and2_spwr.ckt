@@ -1,7 +1,7 @@
 AND2 static-power analysis: all DC input states
 .lib /home/sumit/eda_tools/open_pdks/sky130/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 .include and2_pex.spice
-.include invx1_pex.spice
+
 
 .param Cl = 0.5e-15
 .param SR = 10e-12

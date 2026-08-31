@@ -1,0 +1,233 @@
+FOR A://////////////////////////////////
+========================================
+ Parameters_Slew = 10
+ Parameters_ = 0.5
+Rise_time = 1.97811E-11
+Fall_time = 2.40248E-11
+PHL_time = 6.64341E-11
+PLH_time = 9.70795E-11
+p_dynamic_rise = 0.000124623
+p_dynamic_fall = 8.92493E-05
+========================================
+========================================
+Parameters_Slew = 100
+Parameters_Cap = 0.5
+Rise_time = 1.98161E-11
+Fall_time = 2.40365E-11
+PHL_time = 8.35361E-11
+PLH_time = 1.18665E-10
+p_dynamic_rise = 7.60345E-05
+p_dynamic_fall = 5.8102E-05
+========================================
+========================================
+Parameters_Slew = 1000
+Parameters_Cap = 0.5
+Rise_time = 3.26485E-11
+Fall_time = 3.45838E-11
+PHL_time = 1.63724E-10
+PLH_time = 2.90581E-10
+p_dynamic_rise = 1.78169E-05
+p_dynamic_fall = 1.38161E-05
+========================================
+========================================
+Parameters_Slew = 10
+Parameters_Cap = 10
+Rise_time = 6.76069E-11
+Fall_time = 8.04723E-11
+PHL_time = 1.07827E-10
+PLH_time = 1.5309E-10
+p_dynamic_rise = 0.000229233
+p_dynamic_fall = 5.35334E-05
+========================================
+========================================
+Parameters_Slew = 100
+Parameters_Cap = 10
+Rise_time = 6.76216E-11
+Fall_time = 8.04888E-11
+PHL_time = 1.24904E-10
+PLH_time = 1.74606E-10
+p_dynamic_rise = 0.000174528
+p_dynamic_fall = 4.11441E-05
+========================================
+========================================
+Parameters_Slew = 1000
+Parameters_Cap = 10
+Rise_time = 7.57645E-11
+Fall_time = 8.77168E-11
+PHL_time = 2.15255E-10
+PLH_time = 3.53815E-10
+p_dynamic_rise = 5.85635E-05
+p_dynamic_fall = 1.37171E-05
+========================================
+========================================
+Parameters_Slew = 10
+Parameters_Cap = 100
+Rise_time = 5.52631E-10
+Fall_time = 6.4545E-10
+PHL_time = 4.39858E-10
+PLH_time = 5.91562E-10
+p_dynamic_rise = 0.000317119
+p_dynamic_fall = 1.11463E-05
+========================================
+========================================
+Parameters_Slew = 100
+Parameters_Cap = 100
+Rise_time = 5.52631E-10
+Fall_time = 6.4545E-10
+PHL_time = 4.56976E-10
+PLH_time = 6.13148E-10
+p_dynamic_rise = 0.00030017
+p_dynamic_fall = 1.0328E-05
+========================================
+========================================
+Parameters_Slew = 1000
+Parameters_Cap = 100
+Rise_time = 5.53191E-10
+Fall_time = 6.45768E-10
+PHL_time = 5.4901E-10
+PLH_time = 7.94748E-10
+p_dynamic_rise = 0.000206975
+p_dynamic_fall = 7.26308E-06
+========================================
+
+FOR B://////////////////////////////////
+========================================
+Parameters_Slew = 10
+Parameters_Cap = 0.5
+Rise_time = 1.9803E-11
+Fall_time = 2.32315E-11
+PHL_time = -1.91901E-09
+PLH_time = 2.11108E-09
+p_dynamic_rise = 0.000205686
+p_dynamic_fall = 7.04073E-05
+========================================
+========================================
+Parameters_Slew = 100
+Parameters_Cap = 0.5
+Rise_time = 1.9809E-11
+Fall_time = 2.3226E-11
+PHL_time = -1.89891E-09
+PLH_time = 2.12854E-09
+p_dynamic_rise = 0.000129606
+p_dynamic_fall = 4.53612E-05
+========================================
+========================================
+Parameters_Slew = 1000
+Parameters_Cap = 0.5
+Rise_time = 2.07255E-11
+Fall_time = 2.3524E-11
+PHL_time = -1.8299E-09
+PLH_time = 2.20281E-09
+p_dynamic_rise = 3.47606E-05
+p_dynamic_fall = 1.69109E-05
+========================================
+========================================
+Parameters_Slew = 10
+Parameters_Cap = 10
+Rise_time = 6.76129E-11
+Fall_time = 7.97856E-11
+PHL_time = -1.87761E-09
+PLH_time = 2.16659E-09
+p_dynamic_rise = 0.000265177
+p_dynamic_fall = 4.53321E-05
+========================================
+========================================
+Parameters_Slew = 100
+Parameters_Cap = 10
+Rise_time = 6.7616E-11
+Fall_time = 7.979E-11
+PHL_time = -1.85751E-09
+PLH_time = 2.18402E-09
+p_dynamic_rise = 0.000202199
+p_dynamic_fall = 3.37976E-05
+========================================
+========================================
+Parameters_Slew = 1000
+Parameters_Cap = 10
+Rise_time = 6.8067E-11
+Fall_time = 7.99911E-11
+PHL_time = -1.78809E-09
+PLH_time = 2.25827E-09
+p_dynamic_rise = 7.41923E-05
+p_dynamic_fall = 1.5843E-05
+========================================
+========================================
+Parameters_Slew = 10
+Parameters_Cap = 100
+Rise_time = 5.52631E-10
+Fall_time = 6.45009E-10
+PHL_time = -1.54494E-09
+PLH_time = 2.60311E-09
+p_dynamic_rise = 0.000322891
+p_dynamic_fall = 9.88738E-06
+========================================
+========================================
+Parameters_Slew = 100
+Parameters_Cap = 100
+Rise_time = 5.52631E-10
+Fall_time = 6.45008E-10
+PHL_time = -1.52483E-09
+PLH_time = 2.62055E-09
+p_dynamic_rise = 0.00030472
+p_dynamic_fall = 8.80507E-06
+========================================
+========================================
+Parameters_Slew = 1000
+Parameters_Cap = 100
+Rise_time = 5.52651E-10
+Fall_time = 6.45017E-10
+PHL_time = -1.45516E-09
+PLH_time = 2.69505E-09
+p_dynamic_rise = 0.000216208
+p_dynamic_fall = 9.13469E-06
+========================================
+========================================
+Parameters_Slew = 1000
+Parameters_Cap = 100
+Rise_time = 5.52631E-10
+Fall_time = 6.45009E-10
+PHL_time = -1.54494E-09
+PLH_time = 2.60311E-09
+p_dynamic_rise = 0.000322891
+p_dynamic_fall = 9.88738E-06
+========================================
+========================================
+Parameters_Slew = 1000
+Parameters_Cap = 100
+Rise_time = 6.76129E-11
+Fall_time = 7.97856E-11
+PHL_time = -1.87761E-09
+PLH_time = 2.16659E-09
+p_dynamic_rise = 0.000265177
+p_dynamic_fall = 4.53321E-05
+========================================
+========================================
+Parameters_Slew = 1000
+Parameters_Cap = 100
+Rise_time = 6.76129E-11
+Fall_time = 7.97856E-11
+PHL_time = -1.87761E-09
+PLH_time = 2.16659E-09
+p_dynamic_rise = 0.000265177
+p_dynamic_fall = 4.53321E-05
+========================================
+========================================
+Parameters_Slew = 1000
+Parameters_Cap = 100
+Rise_time = 6.76129E-11
+Fall_time = 7.97856E-11
+PHL_time = -1.87761E-09
+PLH_time = 2.16659E-09
+p_dynamic_rise = 0.000265177
+p_dynamic_fall = 4.53321E-05
+========================================
+========================================
+Parameters_Slew = 1000
+Parameters_Cap = 100
+Rise_time = 6.76129E-11
+Fall_time = 7.97856E-11
+PHL_time = -1.87761E-09
+PLH_time = 2.16659E-09
+p_dynamic_rise = 0.000265177
+p_dynamic_fall = 4.53321E-05
+========================================

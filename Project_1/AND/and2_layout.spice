@@ -9,13 +9,13 @@ X2 x2 x1 x3 VGND sky130_fd_pr__nfet_01v8 ad=0.126 pd=1.44 as=0.126 ps=1.44 w=0.4
 **devattr s=5040,288 d=5040,288
 X3 VGND B x1 VGND sky130_fd_pr__nfet_01v8 ad=0.126 pd=1.44 as=0.126 ps=1.44 w=0.42 l=0.15
 **devattr s=5040,288 d=5040,288
-X4 VPWR x1 x2 VPWR sky130_fd_pr__pfet_01v8 ad=0.138 pd=1.22497 as=0.138 ps=1.52 w=0.46 l=0.15
-**devattr s=5520,304 d=5520,304
-X5 x2 A VPWR VPWR sky130_fd_pr__pfet_01v8 ad=0.138 pd=1.52 as=0.138 ps=1.22497 w=0.46 l=0.15
-**devattr s=5520,304 d=5520,304
-X6 VPWR x2 Y VPWR sky130_fd_pr__pfet_01v8 ad=0.405 pd=3.59503 as=0.405 ps=3.3 w=1.35 l=0.15
-**devattr s=16200,660 d=16200,660
-X7 VPWR B x1 VPWR sky130_fd_pr__pfet_01v8 ad=0.405 pd=3.59503 as=0.405 ps=3.3 w=1.35 l=0.15
-**devattr s=16200,660 d=16200,660
+X4 VPWR x1 x2 VPWR sky130_fd_pr__pfet_01v8 ad=0.189 pd=1.66 as=0.189 ps=1.86 w=0.63 l=0.15
+**devattr s=7560,372 d=7560,372
+X5 x2 A VPWR VPWR sky130_fd_pr__pfet_01v8 ad=0.189 pd=1.86 as=0.189 ps=1.66 w=0.63 l=0.15
+**devattr s=7560,372 d=7560,372
+X6 VPWR x2 Y VPWR sky130_fd_pr__pfet_01v8 ad=0.378 pd=3.32 as=0.378 ps=3.12 w=1.26 l=0.15
+**devattr s=15120,624 d=15120,624
+X7 VPWR B x1 VPWR sky130_fd_pr__pfet_01v8 ad=0.378 pd=3.32 as=0.378 ps=3.12 w=1.26 l=0.15
+**devattr s=15120,624 d=15120,624
 .ends
 
