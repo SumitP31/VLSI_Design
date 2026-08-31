@@ -181,3 +181,33 @@ PLH_time = 2.69505E-09
 p_dynamic_rise = 0.000216208
 p_dynamic_fall = 9.13469E-06
 ========================================
+========================================
+Parameters_Slew = 1000
+Parameters_Cap = 100
+Rise_time = 5.52631E-10
+Fall_time = 6.45009E-10
+PHL_time = -1.54494E-09
+PLH_time = 2.60311E-09
+p_dynamic_rise = 0.000322891
+p_dynamic_fall = 9.88738E-06
+========================================
+========================================
+Parameters_Slew = 1000
+Parameters_Cap = 100
+Rise_time = 6.76129E-11
+Fall_time = 7.97856E-11
+PHL_time = -1.87761E-09
+PLH_time = 2.16659E-09
+p_dynamic_rise = 0.000265177
+p_dynamic_fall = 4.53321E-05
+========================================
+========================================
+Parameters_Slew = 1000
+Parameters_Cap = 100
+Rise_time = 6.76129E-11
+Fall_time = 7.97856E-11
+PHL_time = -1.87761E-09
+PLH_time = 2.16659E-09
+p_dynamic_rise = 0.000265177
+p_dynamic_fall = 4.53321E-05
+========================================

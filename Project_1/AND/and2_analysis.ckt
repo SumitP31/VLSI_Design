@@ -7,8 +7,8 @@ AND2 PEX input-capacitance characterization
 .include and2_pex.spice
 .include invx1_pex.spice
 
-.param SR = 1000e-12
-.param Cl = 100e-15
+.param SR = 10e-12
+.param Cl = 10e-15
 
 .param TR = 2e-9 - SR
 
@@ -42,9 +42,9 @@ run
     meas tran a_fall_cap PARAM='q_a_fall/1.8'
     meas tran a_average_cap PARAM='(a_rise_cap+a_fall_cap)/2'
 
-    *plot V(in1) V(in2) 
-    *plot  V(in1) V(out) 
-    *plot I(vdd)
+    plot V(in1) V(in2) V(out) 
+    plot  V(in1) V(out) 
+    plot I(vdd)
     print tr tf tphl tplh
     *print q_b_rise q_b_fall 
     print a_rise_cap a_fall_cap a_average_cap
