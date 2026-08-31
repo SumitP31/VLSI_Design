@@ -1,0 +1,61 @@
+settings:
+  lib_name: sky130_and2
+
+  simulation:
+    backend: ngspice-shared
+
+  units:
+    time: ns
+    voltage: V
+    current: uA
+    capacitive_load: pF
+    pulling_resistance: Ohm
+    leakage_power: nW
+    energy: fJ
+
+  named_nodes:
+    primary_power:
+      name: VPWR
+      voltage: 1.8
+
+    primary_ground:
+      name: VGND
+      voltage: 0
+
+  logic_thresholds:
+    low: 20
+    high: 80
+    falling: 50
+    rising: 50
+
+  temperature: 25
+
+cells:
+  AND2:
+    netlist: /foss/designs/char_and2/and2.spice
+
+    models:
+      - /foss/pdks/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+    inputs:
+      - A
+      - B
+
+    outputs:
+      - Y
+
+    functions:
+      - Y = A & !B
+
+    data_slews:
+      - 0.05
+      - 0.1
+      - 0.2
+
+    loads:
+      - 0.005
+      - 0.01
+      - 0.02
+
+
+    area: 0
