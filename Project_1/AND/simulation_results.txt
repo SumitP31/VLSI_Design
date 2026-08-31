@@ -211,3 +211,13 @@ PLH_time = 2.16659E-09
 p_dynamic_rise = 0.000265177
 p_dynamic_fall = 4.53321E-05
 ========================================
+========================================
+Parameters_Slew = 1000
+Parameters_Cap = 100
+Rise_time = 6.76129E-11
+Fall_time = 7.97856E-11
+PHL_time = -1.87761E-09
+PLH_time = 2.16659E-09
+p_dynamic_rise = 0.000265177
+p_dynamic_fall = 4.53321E-05
+========================================
