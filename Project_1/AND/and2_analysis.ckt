@@ -7,8 +7,8 @@ AND2 PEX input-capacitance characterization
 .include and2_pex.spice
 
 
-.param SR = 1000e-12
-.param Cl = 100e-15
+.param SR = 10e-12
+.param Cl = 0.5e-15
 
 .param TR = 2e-9 - SR
 

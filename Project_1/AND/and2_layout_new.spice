@@ -1,0 +1,24 @@
+* NGSPICE file created from AND2.ext - technology: sky130A
+
+.subckt AND2 A B VPWR VGND Y
+X0 VGND x2 Y VGND sky130_fd_pr__nfet_01v8 ad=0.126 pd=1.29 as=0.126 ps=1.44 w=0.42 l=0.15
+
+X1 VPWR x2 Y VPWR sky130_fd_pr__pfet_01v8 ad=0.378 pd=3.04228 as=0.378 ps=3.12 w=1.26 l=0.15
+
+
+X2 x3 A VGND VGND sky130_fd_pr__nfet_01v8 ad=0.252 pd=2.28 as=0.252 ps=2.58 w=0.84 l=0.15
+
+X3 x2 x1 x3 VGND sky130_fd_pr__nfet_01v8 ad=0.252 pd=2.28 as=0.252 ps=2.28 w=0.84 l=0.15
+
+
+X4 VGND B x1 VGND sky130_fd_pr__nfet_01v8 ad=0.126 pd=1.29 as=0.126 ps=1.44 w=0.42 l=0.15
+
+X5 VPWR B x1 VPWR sky130_fd_pr__pfet_01v8 ad=0.378 pd=3.04228 as=0.378 ps=3.12 w=1.26 l=0.15
+
+
+X6 x2 A VPWR VPWR sky130_fd_pr__pfet_01v8 ad=0.4905 pd=3.87 as=0.4905 ps=3.94772 w=1.635 l=0.15
+
+X7 VPWR x1 x2 VPWR sky130_fd_pr__pfet_01v8 ad=0.4905 pd=3.94772 as=0.4905 ps=3.87 w=1.635 l=0.15
+
+.ends
+
