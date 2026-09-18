@@ -1,0 +1,48 @@
+* NGSPICE file created from DFF.ext - technology: sky130A
+
+.param PW= 0.63
+.param AD = {PW*0.3}
+.param AS={PW*0.3}
+.param PS={2*(PW+0.3)} 
+.param PD={2*(PW+0.3)}
+
+.param PW1= 1.26
+.param AD1 = {PW1*0.3}
+.param AS1={PW1*0.3}
+.param PS1={2*(PW1+0.3)}
+.param PD1={2*(PW1+0.3)}
+
+
+.subckt MUX_2x1 D li_749_132# Qd CLK VPWR Qb VGND CLKb
+X0 Qd CLK D VPWR sky130_fd_pr__pfet_01v8 ad=0.14175 pd=1.08 as=0.2835 ps=2.16 w={0.63} l=0.15
+**devattr s=11340,432 d=5670,216
+X1 Qd CLKb D VGND sky130_fd_pr__nfet_01v8 ad=0.0945 pd=0.87 as=0.189 ps=1.74 w=0.42 l=0.15
+**devattr s=7560,348 d=3780,174
+X2 Qb CLK Qd VGND sky130_fd_pr__nfet_01v8 ad=0.189 pd=1.74 as=0.0945 ps=0.87 w=0.42 l=0.15
+**devattr s=3780,174 d=7560,348
+X3 Qb CLKb Qd VPWR sky130_fd_pr__pfet_01v8 ad=0.2835 pd=2.16 as=0.14175 ps=1.08 w=0.63 l=0.15
+**devattr s=5670,216 d=11340,432
+.ends
+
+.subckt INVX1 A Y VGND VPWR
+X0 Y A VPWR VPWR sky130_fd_pr__pfet_01v8 ad=0.378 pd=3.12 as=0.378 ps=3.12 w=1.26 l=0.15
+**devattr s=15120,624 d=15120,624
+X1 Y A VGND VGND sky130_fd_pr__nfet_01v8 ad=0.126 pd=1.44 as=0.126 ps=1.44 w=0.42 l=0.15
+**devattr s=5040,288 d=5040,288
+.ends
+
+.subckt LATCH INVX1_1/VPWR MUX_2x1_0/CLKb MUX_2x1_0/D INVX1_1/A MUX_2x1_0/CLK VSUBS
+XMUX_2x1_0 MUX_2x1_0/D INVX1_0/A INVX1_0/A MUX_2x1_0/CLK INVX1_1/VPWR INVX1_1/Y VSUBS
++ MUX_2x1_0/CLKb MUX_2x1
+XINVX1_0 INVX1_0/A INVX1_1/A VSUBS INVX1_1/VPWR INVX1
+XINVX1_1 INVX1_1/A INVX1_1/Y VSUBS INVX1_1/VPWR INVX1
+.ends
+
+.subckt DFF D CLK VPWR VGND Q
+XLATCH_0 VPWR CLKB INVX1_0/Y Q1 CLK VGND LATCH
+XLATCH_1 VPWR CLK Q1 INVX1_1/A CLKB VGND LATCH
+XINVX1_0 D INVX1_0/Y VGND VPWR INVX1
+XINVX1_1 INVX1_1/A Q VGND VPWR INVX1
+XINVX1_2 CLK CLKB VGND VPWR INVX1
+.ends
+
