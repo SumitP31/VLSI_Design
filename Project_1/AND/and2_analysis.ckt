@@ -8,7 +8,7 @@ AND2 PEX input-capacitance characterization
 
 
 .param SR = 10e-12
-.param Cl = 100e-15
+.param Cl = 0.5e-15
 
 .param TR = 2e-9 - SR
 
@@ -26,12 +26,16 @@ Cload out 0 {Cl}
     .meas tran q_a_fall INTEG par('i(VIN1)')  FROM=4n TO= '4n+SR'
 
 
-    .meas tran a_rise_cap PARAM='q_a_rise/1.8'
-    .meas tran a_fall_cap PARAM='q_a_fall/1.8'
-    .meas tran a_average_cap PARAM='(a_rise_cap+a_fall_cap)/2'
-
 .control
-run
+* 3 x 3 characterization matrix:
+*   Cl = 0.5 fF, 10 fF, 100 fF
+*   SR = 10 ps, 100 ps, 1000 ps
+foreach cl 0.5f 10f 100f
+  foreach sr 10p 100p 1000p
+    alterparam Cl = $cl
+    alterparam SR = $sr
+    reset
+    run
     meas tran tr TRIG V(out) VAL=0.36 RISE=1 TARG V(out) VAL=1.44 RISE=1
     meas tran tf TRIG V(out) VAL=1.44 FALL=1 TARG V(out) VAL=0.36 FALL=1
 
@@ -48,8 +52,6 @@ run
     *plot I(vdd)
     print tr tf tphl tplh
     *print q_b_rise q_b_fall 
-    print a_rise_cap a_fall_cap a_average_cap
-
     *---------------------------DYNAMIC POWER------------------------------
     let p_inst = -v(vdd) * i(VDD)
 
@@ -77,8 +79,8 @@ run
     print p_dynamic_fall
 
     echo "========================================" >> simulation_results.txt
-    echo "Parameters_Slew = 10" >> simulation_results.txt
-    echo "Parameters_Cap = Test" >> simulation_results.txt
+    echo "Parameters_Slew_ps = $sr" >> simulation_results.txt
+    echo "Parameters_CL_fF = $cl" >> simulation_results.txt
 
     echo "Rise_time = $&tr" >> simulation_results.txt
     echo "Fall_time = $&tf" >> simulation_results.txt
@@ -89,6 +91,8 @@ run
     echo "p_dynamic_rise = $&p_dynamic_rise" >> simulation_results.txt
     echo "p_dynamic_fall = $&p_dynamic_fall" >> simulation_results.txt
     echo "========================================" >> simulation_results.txt
+  end
+end
 
 .endc
 
