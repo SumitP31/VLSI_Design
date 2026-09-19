@@ -1,6 +1,6 @@
 .lib /home/sumit/eda_tools/open_pdks/sky130/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 
-.include "dff_layout.spice"
+.include "dff_pex.spice"
 
 * The voltage source:
 *--------------------------------------------------------
