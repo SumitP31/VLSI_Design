@@ -1,0 +1,98 @@
+.lib /home/sumit/eda_tools/open_pdks/sky130/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+
+* Deivce Parameters:
+*--------------
+.param PW= 0.63
+.param AD = {PW*0.3}
+.param AS={PW*0.3}
+.param PS={2*(PW+0.3)} 
+.param PD={2*(PW+0.3)}
+
+.param PW1= 1.26
+.param AD1 = {PW1*0.3}
+.param AS1={PW1*0.3}
+.param PS1={2*(PW1+0.3)}
+.param PD1={2*(PW1+0.3)}
+
+.param PWn= 0.42
+.param ADn = {PWn*0.3}
+.param ASn={PWn*0.3}
+.param PSn={2*(PWn+0.3)}
+.param PDn={2*(PWn+0.3)}
+
+*------------Inveter for first input and load --------------
+.subckt INVX1 A VPWR VGND Y
+X0 Y A VPWR VPWR sky130_fd_pr__pfet_01v8 ad=0.378 pd=3.12 as=0.378 ps=3.12 w=1.26 l=0.15
+X1 Y A VGND VGND sky130_fd_pr__nfet_01v8 ad=0.126 pd=1.44 as=0.126 ps=1.44 w=0.42 l=0.15
+
+C0 VPWR Y 0.13766f
+C1 VPWR A 0.10451f
+C2 Y A 0.03664f
+C3 Y VGND 0.40665f
+C4 VPWR VGND 0.82521f
+.ends
+
+
+.subckt BUFF vin vout vdd vss 
+
+X0 vout a_30_20# vss vss sky130_fd_pr__nfet_01v8 ad=0.126 pd=1.44 as=0.126 ps=1.44 w=0.42 l=0.15
+X1 a_30_20# vin vdd vdd sky130_fd_pr__pfet_01v8 ad=0.4158 pd=3.18 as=0.444 ps=3.56 w=1.26 l=0.15
+X2 a_30_20# vin vss vss sky130_fd_pr__nfet_01v8 ad=0.126 pd=1.44 as=0.126 ps=1.44 w=0.42 l=0.15
+X3 vout a_30_20# vdd vdd sky130_fd_pr__pfet_01v8 ad=0.4158 pd=3.18 as=0.444 ps=3.56 w=1.26 l=0.15
+C0 a_30_20# vin 0.0448f
+C1 a_30_20# vdd 0.33132f
+C2 vdd vout 0.15743f
+C3 vin vdd 0.08304f
+C4 a_30_20# vout 0.03682f
+C5 vout vss 0.18863f
+C6 vin vss 0.29585f
+C7 vdd vss 1.25067f
+C8 a_30_20# vss 0.39234f
+
+.ends  
+
+* The voltage source:
+*--------------------------------------------------------
+VDD vdd 0 DC 1.8
+
+VIN1 CLK 0 PULSE(1.8 0 0 10p 10p 2n 4n)
+*VIN3 CLKb 0 PULSE(0 1.8 0 10p 10p 1n 2n)
+VIN2 D 0 PULSE(1.8 0 0 10p 10p 1n 3n)
+.tran 1p 20n
+*--------------------------------------------------------
+*XINV3 D vdd 0 Db INVX1
+*XINV2 CLK vdd 0 CLKb INVX1
+*XDFF1 D CLK CLKb vdd 0 Y outb DFF
+XINV4 D out vdd 0 BUFF
+XINV1 out vdd 0 load INVX1
+
+*Cload out 0 10f
+    
+*--------------------------------------------------------
+.meas tran tr TRIG V(out) VAL=0.36 RISE=1 TARG V(out) VAL=1.44 RISE=1
+.meas tran tf TRIG V(out) VAL=1.44 FALL=1 TARG V(out) VAL=0.36 FALL=1
+
+
+*.meas tran tphl TRIG V(in1) VAL=0.9 RISE=1 TARG V(out) VAL=0.9 FALL=1
+**.meas tran tplh TRIG V(in1) VAL=0.9 FALL=1 TARG V(out) VAL=0.9 RISE=1
+
+* Power drawn from VDD.  The minus sign is required because SPICE reports
+* current entering the positive terminal of VDD (a delivering source is negative).
+* Measure 4 ns to 8 ns to exclude the initial transient; this is one full cycle.
+*.meas tran pavg AVG par('-v(vdd)*i(VDD)') FROM=4n TO=8n
+*.meas tran energy_per_cycle INTEG par('-v(vdd)*i(VDD)') FROM=4n TO=8n
+*--------------------------------------------------------
+
+
+.control
+run
+
+plot V(CLK) V(D) V(out)
+*plot  V(in1) V(out)
+*meas tran VM find V(out) when V(in1)=V(out) cross=-1
+*print VM
+
+.endc
+
+.end

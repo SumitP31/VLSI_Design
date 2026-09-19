@@ -1,0 +1,108 @@
+* NGSPICE file - Buffer loaded with INVX1
+* Technology: sky130A
+
+*.lib /foss/pdks/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.lib /home/sumit/eda_tools/open_pdks/sky130/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+
+* ============================================================
+* BUFFER
+* ============================================================
+
+.subckt BUF vin vout vdd vss
+
+X0 vout a_30_20# vss vss sky130_fd_pr__nfet_01v8 ad=0.126 pd=1.44 as=0.126 ps=1.44 w=0.42 l=0.15
+
+X1 a_30_20# vin vdd vdd sky130_fd_pr__pfet_01v8 ad=0.378 pd=3.12 as=0.378 ps=3.12 w=1.26 l=0.15
+
+X2 a_30_20# vin vss vss sky130_fd_pr__nfet_01v8 ad=0.126 pd=1.44 as=0.126 ps=1.44 w=0.42 l=0.15
+
+X3 vout a_30_20# vdd vdd sky130_fd_pr__pfet_01v8 ad=0.378 pd=3.12 as=0.378 ps=3.12 w=1.26 l=0.15
+
+.ends BUF
+
+
+* ============================================================
+* INVX1 LOAD
+* ============================================================
+
+.subckt not1 A VPWR VGND Y
+
+xm01 Y A VPWR VPWR sky130_fd_pr__pfet_01v8 l=0.15 w=1.26 as=0.378 ad=0.378 ps=3.12 pd=3.12
+
+xm02 Y A VGND VGND sky130_fd_pr__nfet_01v8 l=0.15 w=0.42 as=0.126 ad=0.126 ps=1.44 pd=1.44
+
+.ends not1
+
+
+* ============================================================
+* SUPPLY
+* ============================================================
+
+Vdd vdd 0 DC 1.8
+
+
+* ============================================================
+* BUFFER -> INVX1 LOAD
+* ============================================================
+
+*XBUF in out vdd 0 BUF
+XINV1 in vdd 0 out not1
+XLOAD out vdd 0 load not1
+
+
+* ============================================================
+* INPUT
+* ============================================================
+
+V1 in 0 PULSE(0 1.8 0 20p 20p 180p 400p)
+
+
+* ============================================================
+* SIMULATION
+* ============================================================
+
+.control
+
+.options method=gear
+
+tran 1p 1n
+
+
+* Rise time: 20% to 80%
+
+meas tran tr trig v(out) val=0.36 rise=1 targ v(out) val=1.44 rise=1
+
+
+* Fall time: 80% to 20%
+
+meas tran tf trig v(out) val=1.44 fall=1 targ v(out) val=0.36 fall=1
+
+
+* Propagation delay: input rising, output falling
+
+meas tran tphl trig v(in) val=0.9 rise=1 targ v(out) val=0.9 fall=1
+
+
+* Propagation delay: input falling, output rising
+
+meas tran tplh trig v(in) val=0.9 fall=1 targ v(out) val=0.9 rise=2
+
+
+* Average propagation delay
+
+let tp = (tphl + tplh) / 2
+
+
+print tr
+print tf
+print tphl
+print tplh
+print tp
+
+
+plot v(in) v(out)
+
+.endc
+
+.end
