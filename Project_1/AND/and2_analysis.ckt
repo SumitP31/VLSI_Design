@@ -8,7 +8,7 @@ AND2 PEX input-capacitance characterization
 
 
 .param SR = 10e-12
-.param Cl = 0.5e-15
+.param Cl = 100e-15
 
 .param TR = 2e-9 - SR
 
@@ -77,8 +77,8 @@ run
     print p_dynamic_fall
 
     echo "========================================" >> simulation_results.txt
-    echo "Parameters_Slew = 1000" >> simulation_results.txt
-    echo "Parameters_Cap = 100" >> simulation_results.txt
+    echo "Parameters_Slew = 10" >> simulation_results.txt
+    echo "Parameters_Cap = Test" >> simulation_results.txt
 
     echo "Rise_time = $&tr" >> simulation_results.txt
     echo "Fall_time = $&tf" >> simulation_results.txt

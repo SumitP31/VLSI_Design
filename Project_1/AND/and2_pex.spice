@@ -1,43 +1,45 @@
 * NGSPICE file created from AND2.ext - technology: sky130A
 
 .subckt AND2 A B VPWR VGND Y
-X0 VGND x2 Y VGND sky130_fd_pr__nfet_01v8 ad=0.126 pd=1.44 as=0.126 ps=1.44 w=0.42 l=0.15
-**devattr s=5040,288 d=5040,288
-X1 x3 A VGND VGND sky130_fd_pr__nfet_01v8 ad=0.126 pd=1.44 as=0.126 ps=1.44 w=0.42 l=0.15
-**devattr s=5040,288 d=5040,288
-X2 x2 x1 x3 VGND sky130_fd_pr__nfet_01v8 ad=0.126 pd=1.44 as=0.126 ps=1.44 w=0.42 l=0.15
-**devattr s=5040,288 d=5040,288
-X3 VGND B x1 VGND sky130_fd_pr__nfet_01v8 ad=0.126 pd=1.44 as=0.126 ps=1.44 w=0.42 l=0.15
-**devattr s=5040,288 d=5040,288
-X4 VPWR x1 x2 VPWR sky130_fd_pr__pfet_01v8 ad=0.189 pd=1.66 as=0.189 ps=1.86 w=0.63 l=0.15
-**devattr s=7560,372 d=7560,372
-X5 x2 A VPWR VPWR sky130_fd_pr__pfet_01v8 ad=0.189 pd=1.86 as=0.189 ps=1.66 w=0.63 l=0.15
-**devattr s=7560,372 d=7560,372
-X6 VPWR x2 Y VPWR sky130_fd_pr__pfet_01v8 ad=0.378 pd=3.32 as=0.378 ps=3.12 w=1.26 l=0.15
+X0 VPWR x2 Y VPWR sky130_fd_pr__pfet_01v8 ad=0.378 pd=3.03781 as=0.378 ps=3.12 w=1.26 l=0.15
 **devattr s=15120,624 d=15120,624
-X7 VPWR B x1 VPWR sky130_fd_pr__pfet_01v8 ad=0.378 pd=3.32 as=0.378 ps=3.12 w=1.26 l=0.15
+X1 VPWR x1 x2 VPWR sky130_fd_pr__pfet_01v8 ad=0.498 pd=4.00219 as=0.498 ps=3.92 w=1.66 l=0.15
+**devattr s=19920,784 d=19920,784
+X2 x2 x1 x3 VGND sky130_fd_pr__nfet_01v8 ad=0.252 pd=2.28 as=0.252 ps=2.28 w=0.84 l=0.15
+**devattr s=10080,456 d=10080,456
+X3 VGND x2 Y VGND sky130_fd_pr__nfet_01v8 ad=0.126 pd=1.29 as=0.126 ps=1.44 w=0.42 l=0.15
+**devattr s=5040,288 d=5040,288
+X4 x2 A VPWR VPWR sky130_fd_pr__pfet_01v8 ad=0.498 pd=3.92 as=0.498 ps=4.00219 w=1.66 l=0.15
+**devattr s=19920,784 d=19920,784
+X5 x3 A VGND VGND sky130_fd_pr__nfet_01v8 ad=0.252 pd=2.28 as=0.252 ps=2.58 w=0.84 l=0.15
+**devattr s=10080,456 d=10080,456
+X6 VPWR B x1 VPWR sky130_fd_pr__pfet_01v8 ad=0.378 pd=3.03781 as=0.378 ps=3.12 w=1.26 l=0.15
 **devattr s=15120,624 d=15120,624
-C0 B x1 0.03641f
-C1 VPWR A 0.19223f
-C2 Y A 0.00253f
-C3 x1 A 0.01386f
-C4 B A 0
-C5 x3 x2 0.04503f
-C6 VPWR x3 0.00137f
-C7 VPWR x2 0.31032f
-C8 Y x3 0
-C9 Y x2 0.04016f
-C10 x3 x1 0.003f
-C11 VPWR Y 0.10689f
-C12 x2 x1 0.08126f
-C13 VPWR x1 0.3079f
-C14 B x2 0
-C15 VPWR B 0.12483f
-C16 Y x1 0
-C17 x3 A 0.00303f
-C18 x2 A 0.06314f
-C19 Y VGND 0.53813f
-C20 VPWR VGND 2.13312f
-C21 x3 VGND 0.24409f
+X7 VGND B x1 VGND sky130_fd_pr__nfet_01v8 ad=0.126 pd=1.29 as=0.126 ps=1.44 w=0.42 l=0.15
+**devattr s=5040,288 d=5040,288
+C0 A Y 0
+C1 x2 x1 0.09754f
+C2 x3 x2 0.05745f
+C3 x2 VPWR 0.40071f
+C4 x2 B 0
+C5 x3 x1 0.00705f
+C6 x1 VPWR 0.32966f
+C7 x1 B 0.03505f
+C8 Y x2 0.04092f
+C9 A x2 0.08471f
+C10 x3 VPWR 0.00333f
+C11 x3 B 0
+C12 B VPWR 0.11637f
+C13 Y x1 0
+C14 A x1 0.03284f
+C15 A x3 0.00751f
+C16 Y VPWR 0.10833f
+C17 A B 0
+C18 A VPWR 0.09696f
+C19 Y VGND 0.71132f
+C20 VPWR VGND 3.43497f
+C21 x3 VGND 0.1181f
+C22 x2 VGND 0.33952f
+C23 x1 VGND 0.15928f
 .ends
 

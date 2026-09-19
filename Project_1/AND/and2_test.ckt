@@ -3,7 +3,7 @@
 
 * Deivce Parameters:
 *--------------
-.param PW= 1.635
+.param PW= 1.66
 .param AD = {PW*0.3}
 .param AS={PW*0.3}
 .param PS={2*(PW+0.3)} 
