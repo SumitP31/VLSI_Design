@@ -1,0 +1,90 @@
+========================================
+Parameters_Slew_ps = 10p
+Parameters_CL_fF = 0.5f
+Rise_time = 2.09002E-11
+Fall_time = 1.86193E-11
+PHL_time = 4.11153E-09
+PLH_time = 8.16971E-09
+p_dynamic_rise = 1.98822E-05
+p_dynamic_fall = 1.97101E-05
+========================================
+========================================
+Parameters_Slew_ps = 100p
+Parameters_CL_fF = 0.5f
+Rise_time = 2.09002E-11
+Fall_time = 1.86192E-11
+PHL_time = 4.11153E-09
+PLH_time = 8.16971E-09
+p_dynamic_rise = 1.94893E-05
+p_dynamic_fall = 1.91445E-05
+========================================
+========================================
+Parameters_Slew_ps = 1000p
+Parameters_CL_fF = 0.5f
+Rise_time = 2.09002E-11
+Fall_time = 1.86193E-11
+PHL_time = 4.11153E-09
+PLH_time = 8.16971E-09
+p_dynamic_rise = 1.98267E-05
+p_dynamic_fall = 1.95501E-05
+========================================
+========================================
+Parameters_Slew_ps = 10p
+Parameters_CL_fF = 10f
+Rise_time = 7.21791E-11
+Fall_time = 7.61998E-11
+PHL_time = 4.16521E-09
+PLH_time = 8.21537E-09
+p_dynamic_rise = 2.32583E-05
+p_dynamic_fall = 2.04589E-05
+========================================
+========================================
+Parameters_Slew_ps = 100p
+Parameters_CL_fF = 10f
+Rise_time = 7.21791E-11
+Fall_time = 7.61997E-11
+PHL_time = 4.16521E-09
+PLH_time = 8.21537E-09
+p_dynamic_rise = 2.28893E-05
+p_dynamic_fall = 1.99023E-05
+========================================
+========================================
+Parameters_Slew_ps = 1000p
+Parameters_CL_fF = 10f
+Rise_time = 7.21791E-11
+Fall_time = 7.61998E-11
+PHL_time = 4.16521E-09
+PLH_time = 8.21537E-09
+p_dynamic_rise = 2.32253E-05
+p_dynamic_fall = 2.02997E-05
+========================================
+========================================
+Parameters_Slew_ps = 10p
+Parameters_CL_fF = 100f
+Rise_time = 5.98968E-10
+Fall_time = 6.42314E-10
+PHL_time = 4.6019E-09
+PLH_time = 8.57811E-09
+p_dynamic_rise = 4.77451E-05
+p_dynamic_fall = 1.74848E-05
+========================================
+========================================
+Parameters_Slew_ps = 100p
+Parameters_CL_fF = 100f
+Rise_time = 5.98968E-10
+Fall_time = 6.42314E-10
+PHL_time = 4.6019E-09
+PLH_time = 8.57811E-09
+p_dynamic_rise = 4.74078E-05
+p_dynamic_fall = 1.7013E-05
+========================================
+========================================
+Parameters_Slew_ps = 1000p
+Parameters_CL_fF = 100f
+Rise_time = 5.98968E-10
+Fall_time = 6.42314E-10
+PHL_time = 4.6019E-09
+PLH_time = 8.57811E-09
+p_dynamic_rise = 4.77191E-05
+p_dynamic_fall = 1.73512E-05
+========================================
